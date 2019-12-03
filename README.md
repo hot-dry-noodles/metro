@@ -11,7 +11,7 @@
 - ```bash
   python3 -m venv venv
   source venv/bin/activate
-  pip3 install --upgrade pip django django-admin
+  pip3 install --upgrade pip django django-admin djangorestframework
   # create a user to use admin panel
   python3 manage.py createsuperuser
   # login the admin panel with the username and password just entered
