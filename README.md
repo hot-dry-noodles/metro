@@ -11,6 +11,10 @@
 - ```bash
   python3 -m venv venv
   source venv/bin/activate
-  pip install --upgrade django django-admin
+  pip3 install --upgrade pip django django-admin
+  # create a user to use admin panel
+  python3 manage.py createsuperuser
+  # login the admin panel with the username and password just entered
+  python3 manage.py runserver
   ```
 

@@ -77,8 +77,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'metro': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'metro.sqlite3'),
     }
 }
+
+DATABASES_APPS_MAPPING = {
+    'booking': 'metro',
+}
+
+DATABASES_ROUTERS = [
+    'metro.router.MetroDbRouter',
+]
 
 
 # Password validation
