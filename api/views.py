@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer
+from .serializers import UserSerializer, GroupSerializer, TerminalSerializer
+from booking.models import Terminal, Line, Route
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,3 +18,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+class TerminalViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows terminals to be viewed or edited.
+    """
+    queryset = Terminal.objects.all()
+    serializer_class = TerminalSerializer
