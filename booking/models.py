@@ -13,25 +13,25 @@ class Line(models.Model):
     last_off = models.CharField(max_length=max_time_text_length)
 
 
-class Terminal(models.Model):
+class Station(models.Model):
     name = models.CharField(max_length=max_name_length)
 
 
 class Route(models.Model):
     begin = models.ForeignKey(
-        Terminal, on_delete=models.DO_NOTHING, related_name='begin')
+        Station, on_delete=models.DO_NOTHING, related_name='begin')
     end = models.ForeignKey(
-        Terminal, on_delete=models.DO_NOTHING, related_name='end')
+        Station, on_delete=models.DO_NOTHING, related_name='end')
     distance = models.FloatField(default=float('inf'))
     price = models.IntegerField(default=0)
     route = models.CharField(max_length=max_route_text_length)
 
 
 class Neighbor(models.Model):
-    terminal = models.ForeignKey(
-        Terminal, on_delete=models.DO_NOTHING, related_name='terminal')
+    station = models.ForeignKey(
+        Station, on_delete=models.DO_NOTHING, related_name='station')
     line = models.ForeignKey(Line, on_delete=models.DO_NOTHING)
     prev = models.ForeignKey(
-        Terminal, on_delete=models.DO_NOTHING, related_name='prev')
+        Station, on_delete=models.DO_NOTHING, related_name='prev')
     next = models.ForeignKey(
-        Terminal, on_delete=models.DO_NOTHING, related_name='next')
+        Station, on_delete=models.DO_NOTHING, related_name='next')

@@ -16,9 +16,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('line', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='booking.Line')),
-                ('next', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='next', to='booking.Terminal')),
-                ('prev', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='prev', to='booking.Terminal')),
-                ('terminal', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='terminal', to='booking.Terminal')),
+                ('next', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='next', to='booking.Station')),
+                ('prev', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='prev', to='booking.Station')),
+                ('station', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='station', to='booking.Station')),
             ],
         ),
     ]

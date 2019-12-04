@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Terminal',
+            name='Station',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=256)),
@@ -37,8 +37,8 @@ class Migration(migrations.Migration):
                 ('distance', models.FloatField(default=float("inf"))),
                 ('price', models.IntegerField(default=0)),
                 ('route', models.CharField(max_length=4096)),
-                ('begin', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='begin', to='booking.Terminal')),
-                ('end', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='end', to='booking.Terminal')),
+                ('begin', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='begin', to='booking.Station')),
+                ('end', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='end', to='booking.Station')),
             ],
         ),
     ]
