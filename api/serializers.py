@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from booking.models import Terminal, Line, Route
+from booking.models import Station, Line, Route
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,8 +15,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'name']
 
 
-class TerminalSerializer(serializers.HyperlinkedModelSerializer):
+class StationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Terminal
+        model = Station
         fields = ['name']
