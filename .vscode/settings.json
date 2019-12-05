@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "D:\\Python37\\python.exe",
-    "git.ignoreLimitWarning": true,
-    "python.linting.pylintArgs" :[       
-        "--load-plugins=pylint_django"    
-    ]
-}
