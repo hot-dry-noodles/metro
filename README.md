@@ -23,7 +23,7 @@ python manage.py runserver
 
 ## APIs
 
-### Station
+### Station, Line and Route
 
 Access APIs using tools like `curl`:
 
@@ -163,3 +163,11 @@ curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/lines/\?l
     ]
 }%
 ```
+
+## Bugs
+
+In booking/filters.py:
+
+Linefilter and routefiler class are not used because of unsolved bugs.
+
+If you can solve these bugs, you can use these filter classes to make advanced filters,  although it seems that we only need very simple filters.
