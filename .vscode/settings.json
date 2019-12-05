@@ -1,8 +1,4 @@
 {
-    "python.pythonPath": "venv/bin/python3",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
-    "python.linting.pylintArgs": [
-        "--load-plugins=pylint_django"
-    ],
+    "python.pythonPath": "D:\\Python37\\python.exe",
+    "git.ignoreLimitWarning": true
 }
