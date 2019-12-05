@@ -20,3 +20,18 @@ class StationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Station
         fields = ['name']
+
+
+class LineSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Line
+        fields = ['line_name', 'station_name', 'first_working',
+                  'last_working', 'first_off', 'last_off']
+
+
+class RouteSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Route
+        fields = ['begin', 'end', 'distance', 'price', 'route']

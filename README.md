@@ -12,6 +12,7 @@
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip django django-admin djangorestframework pylint pylint-django
+pip install django_filter
 # create a user to use admin panel
 python manage.py createsuperuser
 python manage.py makemigrations
@@ -22,7 +23,11 @@ python manage.py runserver
 
 ## APIs
 
+<<<<<<< HEAD
 ### Station
+=======
+### Station, Line and Route
+>>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
 
 Access APIs using tools like `curl`:
 
@@ -54,9 +59,36 @@ qs = Station.objects.all()
 if qs.count() > 0:
     qs.delete()
 # create an object
+<<<<<<< HEAD
 t = Station(name='first ternimal')
+=======
+t = Station(name='街道口')
+t = Station(name='华中科技大学')
+t = Station(name='汉口北')
+>>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
 # insert it into the table
 t.save()
+
+# similarily, add elements in line and route table:
+from booking.models import Line
+from booking.models import Route
+entry = Line(line_name='b', station_name='街道口')
+entry.save()
+entry = Line(line_name='b', station_name='华中科技大学')
+entry.save()
+entry = Line(line_name='a', station_name='汉口北')
+entry.save()
+
+s1 = qs[1]
+s0 = qs[0]
+s2 = qs[2]
+r = Route(begin=s0, end=s1, distance=7.126, price=3, route='李祺彦到此一游')
+r.save()
+r = Route(begin=s0, end=s2, distance=26.608, price=7, route='李祺彦到此一游')
+r.save()
+r = Route(begin=s1, end=s2, distance=33.74, price=8, route='李祺彦到此一游')
+r.save()
+
 # check if it exists
 q = Station.objects.get(name='first ternimal')
 print(q.name)
@@ -66,9 +98,65 @@ print(q.name)
 
 ```bash
 curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/stations/
+<<<<<<< HEAD
+=======
+```
+```bash
+curl -H 'curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/routes/\?begin\=1\&end\=2
+```
+```bash
+curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/lines/\?line_name\=b
+>>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
+```
+3. You would see something like this:
+
+```json
+{
+    "count": 4,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "name": "街道口"
+        },
+        {
+            "name": "华中科技大学"
+        },
+        {
+            "name": "光谷广场"
+        },
+        {
+            "name": "汉口北"
+        }
+    ]
+}
 ```
 
-3. You would see something like this:
+```json
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "line_name": "b",
+            "station_name": "街道口",
+            "first_working": "",
+            "last_working": "",
+            "first_off": "",
+            "last_off": ""
+        },
+        {
+            "line_name": "b",
+            "station_name": "华中科技大学",
+            "first_working": "",
+            "last_working": "",
+            "first_off": "",
+            "last_off": ""
+        }
+    ]
+}
+```
 
 ```json
 {
@@ -77,8 +165,20 @@ curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/stations/
     "previous": null,
     "results": [
         {
-            "name": "first ternimal"
+            "begin": "http://127.0.0.1:8000/api/stations/1/",
+            "end": "http://127.0.0.1:8000/api/stations/2/",
+            "distance": 7.126,
+            "price": 3,
+            "route": "李祺彦到此一游"
         }
     ]
-}
+}%
 ```
+
+## Bugs
+
+In booking/filters.py:
+
+Linefilter and routefiler class are not used because of unsolved bugs.
+
+If you can solve these bugs, you can use these filter classes to make advanced filters,  although it seems that we only need very simple filters.

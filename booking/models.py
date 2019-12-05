@@ -6,7 +6,8 @@ max_route_text_length = 4096
 
 
 class Line(models.Model):
-    name = models.CharField(max_length=max_name_length)
+    line_name = models.CharField(max_length=max_name_length)
+    station_name = models.CharField(max_length=max_name_length)
     first_working = models.CharField(max_length=max_time_text_length)
     last_working = models.CharField(max_length=max_time_text_length)
     first_off = models.CharField(max_length=max_time_text_length)
