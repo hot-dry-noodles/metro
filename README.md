@@ -23,7 +23,6 @@ python manage.py runserver
 
 ## APIs
 
-<<<<<<< HEAD
 ### Station
 =======
 ### Station, Line and Route
@@ -59,13 +58,11 @@ qs = Station.objects.all()
 if qs.count() > 0:
     qs.delete()
 # create an object
-<<<<<<< HEAD
 t = Station(name='first ternimal')
-=======
 t = Station(name='街道口')
 t = Station(name='华中科技大学')
 t = Station(name='汉口北')
->>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
+
 # insert it into the table
 t.save()
 
@@ -98,8 +95,7 @@ print(q.name)
 
 ```bash
 curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/stations/
-<<<<<<< HEAD
-=======
+
 ```
 ```bash
 curl -H 'curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/routes/\?begin\=1\&end\=2
