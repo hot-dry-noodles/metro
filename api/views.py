@@ -40,7 +40,7 @@ class LineViewSet(viewsets.ModelViewSet):
     queryset = Line.objects.all()
     serializer_class = LineSerializer
     filter_backends = (rest_framework.DjangoFilterBackend,)
-    filter_fields = ('line_name',)
+    filter_fields = ('line_name')
 
 
 class RouteViewSet(viewsets.ModelViewSet):
@@ -52,5 +52,21 @@ class RouteViewSet(viewsets.ModelViewSet):
     filter_backends = (rest_framework.DjangoFilterBackend,)
     filter_fields = ('begin', 'end')
 
-    # filter_class = RouteFilter (unsolved bug here,
-    # __init__ () conflicts with field_name in /booking/filters.py)
+def findRoute(request, bstation_name, estation_name):
+    """
+    Find the route with two stations.
+    """
+    bstation = Station.objects.filter(station_name = bstation_name).first()
+    estation = Station.objects.filter(station_name = estation_name).first()
+    chosen_route = Route.objects.filter(begin_id = bstation.id, end_id = estation.id).first()
+    
+    # render ...
+
+def findStationInLine(request, _line_name):
+    """
+    Find all stations in a line in order
+    """
+    chosen_line = Line.objects.filter(line_name = _line_name).first()
+    station_list = Line.objects.filter(line_id = chosen_line.id).order_by('id')
+
+    # render ...
