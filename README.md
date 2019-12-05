@@ -23,10 +23,7 @@ python manage.py runserver
 
 ## APIs
 
-### Station
-=======
 ### Station, Line and Route
->>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
 
 Access APIs using tools like `curl`:
 
@@ -102,7 +99,6 @@ curl -H 'curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/
 ```
 ```bash
 curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/api/lines/\?line_name\=b
->>>>>>> 94c587dc87862e0bf19664e34b0024ddfab731df
 ```
 3. You would see something like this:
 
