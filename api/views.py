@@ -1,10 +1,13 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, StationSerializer
-from booking.models import Station, Line, Route
-from .serializers import UserSerializer, GroupSerializer, StationSerializer, RouteSerializer, LineSerializer
-from booking.models import Station, Line, Route
 from django_filters import rest_framework
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from .serializers import *
+from .filters import *
+from booking.models import * 
 # from booking.filters import RouteFilter
 # from booking.filters import LineFilter
 
@@ -31,7 +34,8 @@ class StationViewSet(viewsets.ModelViewSet):
     """
     queryset = Station.objects.all()
     serializer_class = StationSerializer
-
+    filter_backends = (rest_framework.DjangoFilterBackend,)
+    filter_class = StationFilter
 
 class LineViewSet(viewsets.ModelViewSet):
     """
@@ -40,7 +44,7 @@ class LineViewSet(viewsets.ModelViewSet):
     queryset = Line.objects.all()
     serializer_class = LineSerializer
     filter_backends = (rest_framework.DjangoFilterBackend,)
-    filter_fields = ('line_name')
+    filter_class = LineFilter
 
 
 class RouteViewSet(viewsets.ModelViewSet):
@@ -50,7 +54,19 @@ class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.all()
     serializer_class = RouteSerializer
     filter_backends = (rest_framework.DjangoFilterBackend,)
-    filter_fields = ('begin', 'end')
+    filter_class = RouteFilter 
+
+class NeighborViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows neighbors to be viewed or edited.
+    """
+    queryset = Neighbor.objects.all()
+    serializer_class = NeighborSerializer
+    filter_backends = (rest_framework.DjangoFilterBackend,)
+    filter_class = NeighborFilter   
+
+# NOT FINISHED YET
+# EACH QUERY MAPS A NEED
 
 def findRoute(request, bstation_name, estation_name):
     """
@@ -60,7 +76,6 @@ def findRoute(request, bstation_name, estation_name):
     estation = Station.objects.filter(station_name = estation_name).first()
     chosen_route = Route.objects.filter(begin_id = bstation.id, end_id = estation.id).first()
     
-    # render ...
 
 def findStationInLine(request, _line_name):
     """
@@ -69,4 +84,3 @@ def findStationInLine(request, _line_name):
     chosen_line = Line.objects.filter(line_name = _line_name).first()
     station_list = Line.objects.filter(line_id = chosen_line.id).order_by('id')
 
-    # render ...
