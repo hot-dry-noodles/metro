@@ -19,9 +19,9 @@ class Station(models.Model):
 
 class Route(models.Model):
     begin = models.ForeignKey(
-        Station, on_delete=models.DO_NOTHING, related_name='begin')
+        Station, on_delete=models.DO_NOTHING, related_name='begin_station')
     end = models.ForeignKey(
-        Station, on_delete=models.DO_NOTHING, related_name='end')
+        Station, on_delete=models.DO_NOTHING, related_name='end_station')
     distance = models.FloatField(default=float('inf'))
     route = models.CharField(max_length=max_route_text_length)
     price = models.IntegerField(default=0)
@@ -29,10 +29,10 @@ class Route(models.Model):
 
 class Neighbor(models.Model):
     station = models.ForeignKey(
-        Station, on_delete=models.DO_NOTHING, related_name='station')
+        Station, on_delete=models.DO_NOTHING, related_name='neighbor_station')
     line = models.ForeignKey(
-        Line, on_delete=models.DO_NOTHING, related_name='line')
+        Line, on_delete=models.DO_NOTHING, related_name='neighbor_line')
     prev_station = models.ForeignKey(
-        Station, on_delete=models.DO_NOTHING, related_name='prev_station')
+        Station, on_delete=models.DO_NOTHING, related_name='neighbor_prev_station')
     next_station = models.ForeignKey(
-        Station, on_delete=models.DO_NOTHING, related_name='next_station')
+        Station, on_delete=models.DO_NOTHING, related_name='neighbor_next_station')
