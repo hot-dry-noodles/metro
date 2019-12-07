@@ -5,8 +5,7 @@ __pycache__/
 *$py.class
 *.xml
 *.pyc
-api/__pycache__/
-booking/__pycache__/
+**/__pycache__
 
 # C extensions
 *.so
