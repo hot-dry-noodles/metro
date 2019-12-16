@@ -19,8 +19,7 @@ class StationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Station
-        fields = ('first_off', 'first_working',
-            'last_off', 'last_working', 'station_name')
+        fields = ('station_name')
 
 
 class LineSerializer(serializers.HyperlinkedModelSerializer):
@@ -34,7 +33,7 @@ class RouteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Route
-        fields = ('distance', 'price', 'route', 'begin', 'end')
+        fields = ('distance', 'price', 'route', 'begin', 'end', 'time')
 
 
 class NeighborSerializer(serializers.HyperlinkedModelSerializer):
