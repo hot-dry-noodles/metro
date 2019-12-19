@@ -9,13 +9,15 @@ class LineFilter(filters.FilterSet):
 
     class Meta:
         model = Route
-        fields = ['line_name']
+        fields = ('line_name',)
 
 
 class RouteFilter(filters.FilterSet):
-    begin = filters.CharFilter(field_name='begin')
-    end = filters.CharFilter(filed_name='end')
+    # begin = filters.CharFilter(field_name='begin')
+    # end = filters.CharFilter(filed_name='end')
 
     class Meta:
         model = Route
-        fields = ['begin', 'end']
+        fields = ('begin', 'end')
+
+
