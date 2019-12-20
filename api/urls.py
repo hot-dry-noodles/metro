@@ -8,7 +8,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'stations', views.StationViewSet)
 router.register(r'lines', views.LineViewSet)
-router.register(r'routes', views.RouteViewSet, base_name='Route')
+router.register(r'routes', views.RouteViewSet, basename='Route')
 router.register(r'neighbors', views.NeighborViewSet)
 
 # Wire up our API using automatic URL routing.

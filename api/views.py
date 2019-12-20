@@ -22,7 +22,7 @@ def convert(s):
                 line = Line.objects.get(id=i).line_name
                 str = str + line.__str__() + ' '
 
-    return str
+    return str.rstrip()
 
 class UserViewSet(viewsets.ModelViewSet):
     """
