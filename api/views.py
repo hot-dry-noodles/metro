@@ -8,6 +8,22 @@ import re
 # from booking.filters import RouteFilter
 # from booking.filters import LineFilter
 
+def convert(s):
+    if len(s) != 1:
+        temp = re.findall(r'[0-9]+|[a-z]+', s)
+        str = ''
+        for i in iter(temp):
+            if i.isdigit():
+                i = int(i)
+                station = Station.objects.get(id=i+1).station_name
+                str = str + station.__str__() + ' '
+            else:
+                i = ord(i) - ord('a') + 1
+                line = Line.objects.get(id=i).line_name
+                str = str + line.__str__() + ' '
+
+    return str
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -57,6 +73,10 @@ class RouteViewSet(viewsets.ModelViewSet):
         end_id = Station.objects.filter(station_name=end_station).first()
         queryset = queryset.filter(begin=begin_id).filter(end=end_id)
 
+        entry = queryset.get(begin=begin_id, end=end_id)
+        entry.route = convert(entry.route.__str__())
+        for query in queryset:
+            query.route = entry.route
         return queryset
         # queryset = Route.objects.all()
 
